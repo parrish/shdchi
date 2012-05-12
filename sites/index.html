@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+
+    <script src="http://d3js.org/d3.v2.js" type="text/javascript">
+</script>
+    <style type="text/css">
+
+
+    body {
+    font: 10px sans-serif;
+    }
+
+    rect {
+    fill: steelblue;
+    stroke: white;
+    }
+
+    line {
+    stroke: black;
+    shape-rendering: crispEdges;
+    }
+
+    </style>
+    <title></title>
+  </head>
+  <body>
+  <script type="text/javascript">
+
+  function makeHistogram(data, width, height, color) {
+    
+    var histogram = d3.layout.histogram()(data);
+
+    var x = d3.scale.ordinal()
+    .domain(histogram.map(function(d) { return d.x; }))
+    .rangeRoundBands([0, width]);
+
+    var y = d3.scale.linear()
+    .domain([0, d3.max(histogram.map(function(d) { return d.y; }))])
+    .range([0, height]);
+
+    var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .style("color", color);
+
+    svg.selectAll("rect")
+    .data(histogram)
+    .enter().append("rect")
+    .attr("width", x.rangeBand())
+    .attr("x", function(d) { return x(d.x); })
+    .attr("y", function(d) { return height - y(d.y); })
+    .attr("height", function(d) { return y(d.y); });
+
+    svg.append("line")
+    .attr("x1", 0)
+    .attr("x2", width)
+    .attr("y1", height)
+    .attr("y2", height);
+  }
+
+  var lat = [], lon = [], alt = [];
+  
+  d3.csv("../openpaths_jatorre.csv", function(csv){
+
+    csv.map(function(d) {
+      lat.push(d.lat);
+      lon.push(d.lon);
+      alt.push(d.alt);
+    });
+    
+    makeHistogram(lat, 400, 300, '#86FF47'); 
+    makeHistogram(lon, 400, 300, '#FF8C38'); 
+    makeHistogram(alt, 400, 300, '#4F7DFF'); 
+  
+  });
+  </script> 
+  </body>
+</html>
