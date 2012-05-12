@@ -61,7 +61,7 @@
 
   var lat = [], lon = [], alt = [];
   
-  d3.csv("../openpaths_jatorre.csv", function(csv){
+  d3.csv("/data/openpaths_jatorre.csv", function(csv){
 
     csv.map(function(d) {
       lat.push(d.lat);
