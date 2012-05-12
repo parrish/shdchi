@@ -31,6 +31,7 @@
     
     var histogram = d3.layout.histogram()(data);
 
+
     var x = d3.scale.ordinal()
     .domain(histogram.map(function(d) { return d.x; }))
     .rangeRoundBands([0, width]);
@@ -42,6 +43,8 @@
     var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
+    
+    var rules = svg.append("g");
 
     svg.selectAll("rect")
     .data(histogram)
@@ -57,6 +60,37 @@
     .attr("x2", width)
     .attr("y1", height)
     .attr("y2", height);
+    
+    var age1 = d3.max(data, function(d) { return d.age; }),
+           year0 = d3.min(data, function(d) { return d.year; }),
+           year1 = d3.max(data, function(d) { return d.year; }),
+           year = year1;
+    
+    // Add rules to show the population values.
+    rules = rules.selectAll(".rule")
+           .data(y.ticks(10))
+         .enter().append("g")
+           .attr("class", "rule")
+           .attr("transform", function(d) { return "translate(0," + y(d) + ")"; });
+     
+       rules.append("line")
+           .attr("x2", width);
+     
+       rules.append("text")
+           .attr("x", 6)
+           .attr("dy", ".35em")
+           .attr("transform", "rotate(180)")
+           .text(function(d) { return Math.round(d / 1e6) + "M"; });
+           
+           // Add labels to show the age.
+               svg.append("g").selectAll("text")
+                   .data(d3.range(0, age1 + 5, 5))
+                 .enter().append("text")
+                   .attr("text-anchor", "middle")
+                   .attr("transform", function(d) { return "translate(" + (x(d) + x(5) / 2) + ",-4)scale(-1,-1)"; })
+                   .attr("dy", ".71em")
+                   .text(String);
+    
   }
 
   var lat = [], lon = [], alt = [];
