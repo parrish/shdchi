@@ -1,17 +1,20 @@
 require 'csv'
 require 'net/http'
+require 'json/ext'
 
-api_key="a2992647fbbbe48f775042f29648ad59855a3d4a"
+api_key="xxx"
 session_id='kjhkj9'
 
 sql="INSERT INTO openpaths(the_geom,trace_timestamp,session_id) VALUES"
-CSV.foreach("../data/openpaths_jatorre.csv", {:headers => true}) do |row|
+CSV.foreach("data/openpaths_jatorre.csv", {:headers => true}) do |row|
   sql=sql+"(ST_SetSRID(ST_Makepoint(#{row[1]},#{row[0]}),4326),'#{row[3]}','#{session_id}'),"
 end
 
 
 uri = URI('http://osm2.cartodb.com/api/v2/sql')
 res = Net::HTTP.post_form(uri, 'q' => sql[0..-2], 'api_key' => api_key)
+
+puts res
 
 
 sql="
@@ -31,10 +34,15 @@ FROM segments) as lala"
 
 uri = URI('http://osm2.cartodb.com/api/v2/sql')
 res = Net::HTTP.post_form(uri, 'q' => sql, 'api_key' => api_key)
+puts res
 
 sql="DELETE FROM openpaths_segments WHERE interv_sec=0"
 uri = URI('http://osm2.cartodb.com/api/v2/sql')
 res = Net::HTTP.post_form(uri, 'q' => sql, 'api_key' => api_key)
+
+
+
+
 
 
 

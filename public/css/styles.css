@@ -63,6 +63,7 @@ margin: 0px 5px 5px 0;
 #map_canvas {
 height: 500px;
 }
+
 div#outer_map_cartodb_container {
 position: relative;
 width: 960px;
