@@ -9,13 +9,16 @@ get '/data/:file' do
 end
 
 get '/css/:file' do
+  content_type 'text/stylesheet'
   File.read File.join('graph/css', params[:file])
 end
 
 get '/js/:file' do
+  content_type 'text/javascript'
   File.read File.join('graph/js', params[:file])
 end
 
 get '/:file' do
+  content_type `file --mime-type -b graph/#{ params[:file] }`.chomp
   File.read File.join('graph', params[:file])
 end
