@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
             FROM openpaths AS e
             WHERE e.cartodb_id = s.cartodb_id + 1
           ) AS end_date
-          FROM openpaths AS s ORDER BY cartodb_id
+          FROM openpaths AS s WHERE session_id='#{session_id}' ORDER BY cartodb_id
         )
       
       SELECT ST_Multi(ST_MakeLine(the_geom_start, the_geom_end)) AS the_geom,
@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
         END AS speed,
         extract(epoch FROM (end_date - start_date)) AS interv_sec,'#{ session_id }' AS session_id
         
-        FROM segments WHERE session_id='#{session_id}'
+        FROM segments 
       ) AS lala
     SQL
     
