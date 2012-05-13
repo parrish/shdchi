@@ -2,7 +2,7 @@ var data = [4, 8, 15, 16, 23, 42, 65, 23, 78, 55];
 
 var chart = d3.select("#charts").append("svg")
      .attr("class", "chart right")
-		 .attr("id", "chart1")
+     .attr("id", "chart1")
      .attr("width", 477)
      .attr("height", 240);
 
@@ -15,6 +15,4 @@ chart.selectAll("rect")
    .enter().append("rect")
      .attr("y", function(d, i) { return i * 24; })
      .attr("width", x)
-     .attr("height", 24); 
-
-console.log("Here");
+     .attr("height", 24);
