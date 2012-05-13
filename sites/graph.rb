@@ -5,6 +5,7 @@ get '/' do
 end
 
 get '/data/:file' do
+  content_type `file --mime-type -b graph/#{ params[:file] }`.chomp
   File.read File.join('../data/', params[:file])
 end
 
