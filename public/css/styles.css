@@ -282,4 +282,10 @@ text-transform: capitalize;
 /* Internet Explorer */
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 
+} 
+
+.super {
+	font-size: 0.6em;
+	position: relative;
+	top: -5px;
 }
