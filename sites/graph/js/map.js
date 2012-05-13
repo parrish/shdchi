@@ -9,7 +9,7 @@ $(function() {
 
   // Init the map
   var carto_embed_map = new google.maps.Map(document.getElementById("map_cartodb_container"),cartodbMapOptions);
-
+  window.carto_embed_map = carto_embed_map;
 
   // Setup your map styles
   $.ajax({
