@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
         END AS speed,
         extract(epoch FROM (end_date - start_date)) AS interv_sec,'#{ session_id }' AS session_id
         
-        FROM segments
+        FROM segments WHERE session_id='#{session_id}'
       ) AS lala
     SQL
     
