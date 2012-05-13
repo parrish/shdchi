@@ -14,7 +14,6 @@ uri = URI('http://osm2.cartodb.com/api/v2/sql')
 res = Net::HTTP.post_form(uri, 'q' => sql[0..-2], 'api_key' => api_key)
 
 
-
 sql="
 INSERT INTO openpaths_segments(the_geom,distance,start_timestamp,end_timestamp,speed,interv_sec,session_id) SELECT * FROM (
 
