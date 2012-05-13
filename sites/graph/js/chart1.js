@@ -16,5 +16,3 @@ chart.selectAll("rect")
      .attr("y", function(d, i) { return i * 24; })
      .attr("width", x)
      .attr("height", 24); 
-
-console.log("Here");
