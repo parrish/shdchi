@@ -1,1 +1,60 @@
-../../sites/graph/index.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="//cartodb.com/assets/favicon.ico" />
+    
+    <script src="./js/carto.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//maps.google.com/maps/api/js?sensor=true" type="text/javascript" charset="utf-8"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//parrish.cartodb.com/javascripts/admin/show/helpers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cartodb.s3.amazonaws.com/embed/wax.g.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/map.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script src="//documentcloud.github.com/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//d3js.org/d3.v2.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//jashkenas.github.com/coffee-script/extras/coffee-script.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/graph.coffee" type="text/coffeescript" charset="utf-8"></script>
+
+    <link href="/css/reset.css" rel="stylesheet" type="text/css" />
+  	<link href="/css/styles.css" rel="stylesheet" type="text/css" />
+  	<link href="/css/fonts.css" rel="stylesheet" type="text/css" />
+  	<link href="css/chart1.css" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="content">
+
+      <div id="slider">
+        <div id="dateSlider"></div>
+      </div> 
+
+      <div id="outer_map_cartodb_container">
+        <h1 class="rotate">Geo Stats</h1>
+        <div id="map_cartodb_container"></div>
+        <span class="cartodb_map_controls">
+          <a href="#zoom_in" class="cartodb_map_embed_zoom_in">+</a>
+          <a href="#zoom_out" class="cartodb_map_embed_zoom_out">-</a>
+        </span>
+        <a href="https://cartodb.com" class="cartodb_logo" target="_blank">CartoDB</a>
+      </div>
+
+      <div id="quickstats">
+        <div class="stat" id="distance"><span class="label">Distance:</span> 12,053 km</div>
+        <div class="stat" id="speed"><span class="label">Average Speed:</span> 9.8 mph</div>
+      </div>
+
+      <div id="charts">
+        <div class="chart left" id="chart1"></div>
+        <div class="chart right" id="chart2"></div>
+        <div class="chart left" id="chart3"></div>
+        <!-- <div class="chart right" id="chart4"></div> -->
+      </div>
+
+    </div>
+    
+  </body>
+  <script type="text/javascript" src="js/chart1.js"></script>
+  
+</html>
