@@ -43,10 +43,19 @@ $(function() {
               northEast = new L.LatLng(r.maxy,r.maxx),
               bounds = new L.LatLngBounds(southWest, northEast);
           map.fitBounds(bounds);
-					lat_d = (r.maxx-r.minx)*69.172;
-					lon_d = (r.maxy-r.miny)*Math.cos((r.maxx-r.minx)/2)*69.172;
-					area_val = (lat_d*lon_d).toFixed(2);
-					$("#area_value").html(area_val+" miles<span class='super'>2</span>");
         });
+
+			url ="http://osm2.cartodb.com/api/v2/sql?q=SELECT sum(sqrt(1/(1-((speed/29979245)*(speed/29979245))))*interv_sec) - sum(interv_sec) As timelost, avg(speed) As avgspeed, sum(distance) As distance, ST_Area(ST_Extent(the_geom)::geometry,true) As area FROM openpaths_segments WHERE session_id='" + window.cartodbSessionId + "'";
+			$.getJSON(url, function(data) {
+			    r = data.rows[0];
+					area_val = r.area;
+					distance_val = r.distance;
+					avg_speed_val = r.avgspeed;
+					timelost_val = r.timelost*1000000;
+					$("#avg_speed_value").html(avg_speed_val.toFixed(0)+" ms<span class='super'>-1</span>");
+					$("#distance_value").html(distance_val.toFixed(0)+" m");
+					$("#area_value").html(area_val.toFixed(0)+" m<span class='super'>2</span>");
+					$("#timelost_value").html(timelost_val.toFixed(2)+" ms");
+			  });   
 
 });
