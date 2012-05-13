@@ -1,5 +1,6 @@
 require 'csv'
 require 'net/http'
+require 'securerandom'
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
@@ -13,10 +14,11 @@ class ApplicationController < ActionController::Base
   end
   
   def upload
+    @session_id = SecureRandom.hex 8
     post_paths
     post_segments
     post_cleanup
-    redirect_to root_path
+    redirect_to map_path(session: @session_id)
   end
   
   protected
@@ -77,11 +79,7 @@ class ApplicationController < ActionController::Base
   end
   
   def session_id
-    if params[:example]
-      'b29d87a156b6e230df88f57607dea0de'
-    else
-      cookies[:session_id] ||= session['session_id']
-    end
+    params[:session] || @session_id
   end
   helper_method :session_id
   
