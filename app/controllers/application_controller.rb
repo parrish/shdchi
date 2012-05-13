@@ -75,6 +75,7 @@ class ApplicationController < ActionController::Base
   def session_id
     cookies[:session_id] ||= session['session_id']
   end
+  helper_method :session_id
   
   def api_key
     ENV['CARTODB_API_KEY']

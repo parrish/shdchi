@@ -30,6 +30,9 @@
   </head>
   <body>
     <div id="content">
+      <script type="text/javascript" charset="utf-8">
+        window.cartodbSessionId = '<%= session_id %>';
+      </script>
       <%= yield %>
     </div>
   </body>
