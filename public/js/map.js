@@ -69,6 +69,10 @@ $(function() {
 
 					//console.log(groups, counts);
 					window.speedHistogram(counts)
-			  });  
+			  });
+			
+			$("#avg_speed_value").click(function() {
+			  
+			});  
 
 });

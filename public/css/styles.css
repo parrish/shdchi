@@ -89,27 +89,29 @@ width: 220px;
 margin: 5px 10px 0 10px;
 text-align: center;
 padding-right: 10px;
+position: relative;
 }
 
 .last {
 	padding-right: 0px;
 }
 
-span.label {
-	float: left;
+span.label {	
+	position: relative;
+	top: -2px;
 	width: 100%;
 	font-size: 0.8em;
 }
 
 span.stat-val {
 	float: left;
-		width: 100%;
-	font-size: 5.0em;
+	width: 100%;
+	font-size: 4.5em;
 }
 
 span.units {
 	float: left;
-		width: 100%;
+	width: 100%;
 	font-size: 1.0em;
 }
 
@@ -328,6 +330,25 @@ text-transform: capitalize;
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 
 } 
+
+.rotate_label {
+
+/* Safari */
+-webkit-transform: rotate(-90deg);
+
+/* Firefox */
+-moz-transform: rotate(-90deg);
+
+/* IE */
+-ms-transform: rotate(-90deg);
+
+/* Opera */
+-o-transform: rotate(-90deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+}
 
 .super {
 	font-size: 0.6em;
