@@ -1,5 +1,5 @@
 function speedHistogram(data, axis) {
-	var width = 477, height = 240;
+	var width = 450, height = 240;
 
 	var chart = d3.select("#charts").append("svg")
 	     .attr("class", "chart left")
