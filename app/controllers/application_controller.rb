@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     
   end
   
+  def map
+    
+  end
+  
   def upload
     post_paths
     post_segments
@@ -73,8 +77,13 @@ class ApplicationController < ActionController::Base
   end
   
   def session_id
-    cookies[:session_id] ||= session['session_id']
+    if params[:example]
+      'b29d87a156b6e230df88f57607dea0de'
+    else
+      cookies[:session_id] ||= session['session_id']
+    end
   end
+  helper_method :session_id
   
   def api_key
     ENV['CARTODB_API_KEY']

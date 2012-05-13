@@ -1,0 +1,40 @@
+<%= content_for :head do %>
+  <script src="./js/carto.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="js/leaflet.js"></script>
+  <script type="text/javascript" src="js/wax.leaflet.min.js"></script>
+  <script type="text/javascript" src="js/cartodb-leaflet.js"></script>
+  <script src="./js/map.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/graph.coffee" type="text/coffeescript" charset="utf-8"></script>
+<% end -%>
+
+<div id="slider">
+  <div id="dateSlider"></div>
+</div>
+
+<div id="outer_map_cartodb_container">
+  <h1 class="rotate">Geo Stats</h1>
+  <div id="map_cartodb_container"></div>
+  <span class="cartodb_map_controls">
+    <a href="#zoom_in" class="cartodb_map_embed_zoom_in" onclick="map.zoomIn()">+</a>
+    <a href="#zoom_out" class="cartodb_map_embed_zoom_out" onclick="map.zoomOut()">-</a>
+  </span>
+  <a href="https://cartodb.com" class="cartodb_logo" target="_blank">CartoDB</a>
+</div>
+
+<div id="quickstats">
+  <div class="stat" id="distance"><span class="label">Cumulative Distance: </span><span id="distance_value">12,724 km</span></div>
+  <div class="stat" id="speed"><span class="label">Average Speed: </span><span id="avg_speed_value">9.8 mph</span></div>
+  <div class="stat" id="area"><span class="label">Range: </span><span id="area_value"</span></div>
+</div>
+
+<div id="charts">
+</div>
+
+<script src="./js/chart1.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/chart2.js" type="text/javascript" charset="utf-8"></script>
+
+<%= form_tag({ action: 'upload' }, class: 'upload-form', multipart: true) do %>
+  <%= label_tag :file, 'Upload a CSV File' %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'Upload' %>
+<% end -%>

@@ -1,6 +1,5 @@
-var cartodb_table_name  = "segments_export",
-    cartodb_table_id    = "2636",
-    cartodb_user_name   = "parrish",
+var cartodb_table_name  = "openpaths_segments",
+    cartodb_user_name   = "osm2",
       TILEHTTP = "https",
       TILESERVER = "cartodb.com",
       SQL_SERVER = 'cartodb.com',
