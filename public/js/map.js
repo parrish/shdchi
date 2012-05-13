@@ -3,12 +3,9 @@ $(function() {
 
 		map = new L.Map('map_cartodb_container').setView(new L.LatLng(20,0), 2);
 
-
-          var mapboxUrl = 'http://{s}.tiles.mapbox.com/v3/cartodb.map-1nh578vv/{z}/{x}/{y}.png',
-              mapbox = new L.TileLayer(mapboxUrl, {maxZoom: 17,attribution:"OpenStreetMap, Mapbox"});
-          map.addLayer(mapbox,true);
-          
-          
+    var mapboxUrl = 'http://{s}.tiles.mapbox.com/v3/cartodb.map-1nh578vv/{z}/{x}/{y}.png',
+        mapbox = new L.TileLayer(mapboxUrl, {maxZoom: 17,attribution:"OpenStreetMap, Mapbox"});
+    map.addLayer(mapbox,true);   
 		
 		var style= "#openpaths_segments{"+
 		"polygon-opacity:0.7;"+
@@ -46,9 +43,10 @@ $(function() {
               northEast = new L.LatLng(r.maxy,r.maxx),
               bounds = new L.LatLngBounds(southWest, northEast);
           map.fitBounds(bounds);
+					lat_d = (r.maxx-r.minx)*69.172;
+					lon_d = (r.maxy-r.miny)*Math.cos((r.maxx-r.minx)/2)*69.172;
+					area_val = (lat_d*lon_d).toFixed(2);
+					$("#area_value").html(area_val+" miles<span class='super'>2</span>");
         });
-		
-
-
 
 });
