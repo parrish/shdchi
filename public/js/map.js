@@ -59,6 +59,16 @@ $(function() {
 					$("#distance_value").html(distance.canyon.toFixed(0)+" Grand Canyons");
 					$("#area_value").html(area.wales.toFixed(0)+" Wales");
 					$("#timelost_value").html(timelost.val.toFixed(2)+" ms");
-			  });   
+			  }); 
+			
+			url ="http://osm2.cartodb.com/api/v2/sql?q=SELECT ROUND(LOG(CAST(speed As numeric)),0) As speed_group, COUNT(*) as count FROM openpaths_segments WHERE session_id='" + window.cartodbSessionId + "' AND speed > 0 GROUP BY ROUND(LOG(CAST(speed As numeric)),0) ORDER BY ROUND(LOG(CAST(speed As numeric)),0)";
+			$.getJSON(url, function(data) {
+			    r = data.rows;
+          var counts = _(r).map(function(item) { return item.count });
+					var groups = _(r).map(function(item) { return (Math.pow(10,item.speed_group)) });
+
+					console.log(groups, counts);
+					speedHistogram(counts)
+			  });  
 
 });
