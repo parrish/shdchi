@@ -22,13 +22,11 @@
 </div>
 
 <div id="charts">
-  <div class="chart left" id="chart1"></div>
-  <div class="chart right" id="chart2"></div>
-  <div class="chart left" id="chart3"></div>
-  <!-- <div class="chart right" id="chart4"></div> -->
 </div>
 
 <script src="./js/chart1.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/chart2.js" type="text/javascript" charset="utf-8"></script>
+
 <%= form_tag({ action: 'upload' }, class: 'upload-form', multipart: true) do %>
   <%= label_tag :file, 'Upload a CSV File' %>
   <%= file_field_tag :file %>

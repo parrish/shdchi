@@ -1,9 +1,9 @@
 var width = 477, height = 240;
-var data = [4, 8, 15, 16, 23, 42, 65, 23, 78, 55];
+var data = [40, 34, 16, 11, 22, 32, 23, 12, 21];
 
 var chart = d3.select("#charts").append("svg")
-     .attr("class", "chart right")
-     .attr("id", "chart1")
+     .attr("class", "chart left")
+     .attr("id", "chart2")
      .attr("width", width)
      .attr("height", height)
 		 .append("g")
