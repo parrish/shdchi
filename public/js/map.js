@@ -48,14 +48,17 @@ $(function() {
 			url ="http://osm2.cartodb.com/api/v2/sql?q=SELECT sum(sqrt(1/(1-((speed/29979245)*(speed/29979245))))*interv_sec) - sum(interv_sec) As timelost, avg(speed) As avgspeed, sum(distance) As distance, ST_Area(ST_Extent(the_geom)::geometry,true) As area FROM openpaths_segments WHERE session_id='" + window.cartodbSessionId + "'";
 			$.getJSON(url, function(data) {
 			    r = data.rows[0];
-					area_val = r.area;
-					distance_val = r.distance;
-					avg_speed_val = r.avgspeed;
-					timelost_val = r.timelost*1000000;
-					$("#avg_speed_value").html(avg_speed_val.toFixed(0)+" ms<span class='super'>-1</span>");
-					$("#distance_value").html(distance_val.toFixed(0)+" m");
-					$("#area_value").html(area_val.toFixed(0)+" m<span class='super'>2</span>");
-					$("#timelost_value").html(timelost_val.toFixed(2)+" ms");
+					
+					area = { val: r.area*0.000001, wales: r.area/20779000000 };
+					distance = { val: r.distance, canyon: r.distance/433000 };
+					avg_speed = { val: r.avgspeed };
+					timelost = { val: r.timelost*1000000 };
+					
+					//console.log(data);
+					$("#avg_speed_value").html(avg_speed.val.toFixed(0)+" ms<span class='super'>-1</span>");
+					$("#distance_value").html(distance.canyon.toFixed(0)+" Grand Canyons");
+					$("#area_value").html(area.wales.toFixed(0)+" Wales");
+					$("#timelost_value").html(timelost.val.toFixed(2)+" ms");
 			  });   
 
 });
