@@ -1,6 +1,7 @@
 require 'csv'
 require 'net/http'
 require 'securerandom'
+require 'json/ext'
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
@@ -18,6 +19,7 @@ class ApplicationController < ActionController::Base
     post_paths
     post_segments
     post_cleanup
+    post_geocode
     redirect_to map_path(session: @session_id)
   end
   
@@ -80,7 +82,43 @@ class ApplicationController < ActionController::Base
     sql = 'ANALYZE openpaths_segments'
     uri = URI 'http://osm2.cartodb.com/api/v2/sql'
     Net::HTTP.post_form uri, q: sql, api_key: api_key
+  end
+  
+  def post_geocode
+    #find cities traveled
+    sql="SELECT cartodb_id,
+    (SELECT iata_faa FROM airports as a WHERE iata_faa <>'' ORDER BY a.the_geom <-> ST_StartPoint(ST_GeometryN(o.the_geom,1)) LIMIT 1) as start_airport,
+    (SELECT city FROM airports as a WHERE iata_faa <>'' ORDER BY a.the_geom <-> ST_StartPoint(ST_GeometryN(o.the_geom,1)) LIMIT 1) as start_city,
+    (SELECT iata_faa FROM airports as a WHERE iata_faa <>'' ORDER BY a.the_geom <-> ST_EndPoint(ST_GeometryN(o.the_geom,1)) LIMIT 1) as end_airport,
+    (SELECT city FROM airports as a WHERE iata_faa <>''  ORDER BY a.the_geom <-> ST_EndPoint(ST_GeometryN(o.the_geom,1)) LIMIT 1) as end_city,
+    '#{ session_id }' as session_id
+
+    FROM openpaths_segments as o WHERE  distance>100000 and speed>60 AND session_id='#{ session_id }'"
+
+    uri = URI('http://osm2.cartodb.com/api/v2/sql')
+    res = Net::HTTP.post_form(uri, 'q' => sql)
+    result = JSON.parse(res.body)
+
+
+    sql="INSERT INTO openpaths_flights(start_airport,start_city,end_airport,end_city,session_id,carbon) VALUES "
+    result["rows"].each do |flight| 
+
+      uri = URI('http://impact.brighterplanet.com/flights.json')
+      res = Net::HTTP.post_form(uri, 
+        'segments_per_trip' => 1,
+        'trips' =>1,
+        'origin_airport[iata_code]' =>flight["start_airport"],
+        'destination_airport[iata_code]' =>flight["end_airport"]
+
+        )
+      result = JSON.parse(res.body)
+      #puts result["decisions"]["carbon"]["object"]["value"]
+
+      sql=sql+"('#{flight["start_airport"]}','#{flight["start_city"]}','#{flight["end_airport"]}','#{flight["end_city"]}','#{flight["session_id"]}','#{result["decisions"]["carbon"]["object"]["value"]}'),"
+    end
     
+    uri = URI 'http://osm2.cartodb.com/api/v2/sql'
+    Net::HTTP.post_form uri, q: sql[0..-2], api_key: api_key
   end
   
   def session_id

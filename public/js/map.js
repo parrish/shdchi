@@ -45,7 +45,7 @@ $(function() {
           map.fitBounds(bounds);
         });
 
-			url ="http://osm2.cartodb.com/api/v2/sql?q=SELECT sum(sqrt(1/(1-((speed/29979245)*(speed/29979245))))*interv_sec) - sum(interv_sec) As timelost, avg(speed) As avgspeed, sum(distance) As distance, ST_Area(ST_Extent(the_geom)::geometry,true) As area FROM openpaths_segments WHERE session_id='" + window.cartodbSessionId + "'";
+			url ="http://osm2.cartodb.com/api/v2/sql?q=SELECT sum(sqrt(1/(1-((speed/29979245)*(speed/29979245))))*interv_sec) - sum(interv_sec) As timelost, avg(speed) As avgspeed, sum(distance) As distance, ST_Area(ST_Extent(the_geom)::geometry,true) As area,(SELECT sum(carbon) from openpaths_flights as ofl WHERE ofl.session_id='" + window.cartodbSessionId + "') as total_carbon FROM openpaths_segments WHERE session_id='" + window.cartodbSessionId + "'";
 			$.getJSON(url, function(data) {
 			    r = data.rows[0];
 					
