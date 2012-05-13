@@ -51,17 +51,17 @@ $(function() {
 					
 					area = { val: r.area*0.000001, wales: r.area/20779000000 };
 					distance = { val: r.distance, canyon: r.distance/433000 };
-					avg_speed = { val: r.avgspeed };
+					avg_speed = { val: r.avgspeed*2.23693629 };
 					timelost = { val: r.timelost*1000000 };
 					
 					//console.log(data);
-					$("#avg_speed_value").html(avg_speed.val.toFixed(0)+" ms<span class='super'>-1</span>");
-					$("#distance_value").html(distance.canyon.toFixed(0)+" Grand Canyons");
-					$("#area_value").html(area.wales.toFixed(0)+" Wales");
-					$("#timelost_value").html(timelost.val.toFixed(2)+" ms");
+					$("#avg_speed_value").html("<span class='stat-val'>"+avg_speed.val.toFixed(0)+"</span><span class='units'>mph</span>");
+					$("#distance_value").html("<span class='stat-val'>"+distance.canyon.toFixed(0)+"</span><span class='units'>Grand Canyons</span>");
+					$("#area_value").html("<span class='stat-val'>"+area.wales.toFixed(0)+"</span><span class='units'>Wales</span>");
+					$("#timelost_value").html("<span class='stat-val'>"+timelost.val.toFixed(2)+"</span><span class='units'>ms</span>");
 			  }); 
 			
-			url ="http://osm2.cartodb.com/api/v2/sql?q=SELECT ROUND(LOG(CAST(speed As numeric)),0) As speed_group, COUNT(*) as count FROM openpaths_segments WHERE session_id='" + window.cartodbSessionId + "' AND speed > 0 GROUP BY ROUND(LOG(CAST(speed As numeric)),0) ORDER BY ROUND(LOG(CAST(speed As numeric)),0)";
+			url ="http://osm2.cartodb.com/api/v2/sql?q=SELECT ROUND(LOG(CAST(speed As numeric)),0) As speed_group, COUNT(*)/AVG(interv_sec) as count FROM openpaths_segments WHERE session_id='" + window.cartodbSessionId + "' AND speed > 0 GROUP BY ROUND(LOG(CAST(speed As numeric)),0) ORDER BY ROUND(LOG(CAST(speed As numeric)),0)";
 			$.getJSON(url, function(data) {
 			    r = data.rows;
           var counts = _(r).map(function(item) { return item.count });

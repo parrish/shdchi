@@ -78,14 +78,39 @@ div#upload #example a {
 
 div#quickstats {
 background-color: #555;
-height: 30px;
+height: 120px;
 margin: 5px 0px;
 }
 
 div.stat {
 float: left;
-height: 30px;
+height: 120px;
+width: 220px;
 margin: 5px 10px 0 10px;
+text-align: center;
+padding-right: 10px;
+}
+
+.last {
+	padding-right: 0px;
+}
+
+span.label {
+	float: left;
+	width: 100%;
+	font-size: 0.8em;
+}
+
+span.stat-val {
+	float: left;
+		width: 100%;
+	font-size: 5.0em;
+}
+
+span.units {
+	float: left;
+		width: 100%;
+	font-size: 1.0em;
 }
 
 div#charts {
