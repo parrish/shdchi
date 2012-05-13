@@ -67,8 +67,7 @@ $(function() {
           var counts = _(r).map(function(item) { return item.count });
 					var groups = _(r).map(function(item) { return (Math.pow(10,item.speed_group)) });
 
-					console.log(groups, counts);
-					speedHistogram(counts)
+					window.speedHistogram(counts)
 			  });  
 
 });
