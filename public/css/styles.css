@@ -31,13 +31,13 @@ margin: 5px 0px;
 div#upload {
 position: absolute;
 top: 0;
-left: 20%;
+left: 10%;
 background-color: #555;
 text-align: center;
 height: 40px;
 margin: 10px 0px;
 padding: 10px;
-width: 60%;
+width: 80%;
 height: 40px;
 border-radius: 5px;
 -moz-border-radius: 5px;
@@ -54,6 +54,15 @@ margin-left: 20px;
 
 div#upload label {
 margin-right: 20px;
+}
+
+#upload #or {
+  margin: 0 10px;
+}
+
+div#upload #example a {
+  font-family: 'TitilliumText14L600wt', 'Myriad Pro', 'Arial';
+  color: white;
 }
 
 div#quickstats {

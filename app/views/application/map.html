@@ -33,9 +33,3 @@
 
 <script src="./js/chart1.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/chart2.js" type="text/javascript" charset="utf-8"></script>
-
-<%= form_tag({ action: 'upload' }, class: 'upload-form', multipart: true) do %>
-  <%= label_tag :file, 'Upload a CSV File' %>
-  <%= file_field_tag :file %>
-  <%= submit_tag 'Upload' %>
-<% end -%>
