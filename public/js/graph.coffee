@@ -69,8 +69,8 @@ class Segment
 processData = (data) ->
   new Segment(hash) for hash in data.features when hash.geometry isnt null
 
-$ ->
-  $.getJSON "http://parrish.cartodb.com/api/v2/sql?format=geojson&q=select * from segments_export limit 100", processData
+# $ ->
+#   $.getJSON "http://parrish.cartodb.com/api/v2/sql?format=geojson&q=select * from segments_export limit 100", processData
 
 
 window.Segment = Segment

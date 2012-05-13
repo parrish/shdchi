@@ -5,6 +5,14 @@ color: white;
 position: relative;
 }
 
+a:visited {
+  color: orange;
+}
+
+a:link {
+  color: orange;
+}
+
 h1 {
 	display: block;
 	font-size: 60px;
@@ -24,10 +32,13 @@ text-align: center;
 
 div#slider {
 background-color: #555;
-height: 40px;
-margin: 5px 0px;
+height: 60px;
+padding: 5px;
 }
 
+div#slider a {
+color:orange;
+}
 div#upload {
 position: absolute;
 top: 0;
@@ -62,7 +73,7 @@ margin-right: 20px;
 
 div#upload #example a {
   font-family: 'TitilliumText14L600wt', 'Myriad Pro', 'Arial';
-  color: white;
+  color: orange;
 }
 
 div#quickstats {
@@ -104,7 +115,7 @@ height: 500px;
 div#outer_map_cartodb_container {
 position: relative;
 width: 960px;
-height: 500px;
+height: 300px;
 background: white;
 border-radius: 3px;
 -moz-border-radius: 3px;

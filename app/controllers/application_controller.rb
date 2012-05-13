@@ -76,6 +76,11 @@ class ApplicationController < ActionController::Base
     sql = 'DELETE FROM openpaths_segments WHERE interv_sec = 0'
     uri = URI 'http://osm2.cartodb.com/api/v2/sql'
     Net::HTTP.post_form uri, q: sql, api_key: api_key
+    
+    sql = 'ANALYZE openpaths_segments'
+    uri = URI 'http://osm2.cartodb.com/api/v2/sql'
+    Net::HTTP.post_form uri, q: sql, api_key: api_key
+    
   end
   
   def session_id
