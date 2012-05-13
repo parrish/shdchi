@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Webapp</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="//cartodb.com/assets/favicon.ico" />
+    
+    <script src="./js/carto.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//maps.google.com/maps/api/js?sensor=true" type="text/javascript" charset="utf-8"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//parrish.cartodb.com/javascripts/admin/show/helpers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cartodb.s3.amazonaws.com/embed/wax.g.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script src="//documentcloud.github.com/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//d3js.org/d3.v2.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//jashkenas.github.com/coffee-script/extras/coffee-script.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/graph.coffee" type="text/coffeescript" charset="utf-8"></script>
+    
+    <link href="/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="/css/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="css/chart1.css" rel="stylesheet" type="text/css" />
+    
+    <%= yield :head %>
+  </head>
+  <body>
+    <div id="content">
+      <%= yield %>
+    </div>
+  </body>
 </html>
