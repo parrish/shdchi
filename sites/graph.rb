@@ -9,7 +9,7 @@ get '/data/:file' do
 end
 
 get '/css/:file' do
-  content_type 'text/stylesheet'
+  content_type 'text/css'
   File.read File.join('graph/css', params[:file])
 end
 
