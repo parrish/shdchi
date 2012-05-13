@@ -28,6 +28,49 @@ height: 40px;
 margin: 5px 0px;
 }
 
+div#upload, div#example-data {
+position: absolute;
+background-color: #555;
+text-align: center;
+height: 40px;
+margin: 20px 0px;
+padding: 10px;
+width: 60%;
+height: 40px;
+border-radius: 5px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+
+-moz-box-shadow: 3px 3px 8px #222;
+-webkit-box-shadow: 3px 3px 8px #222;
+-box-shadow: 3px 3px 8px #222;
+}
+
+div#upload {
+  top: 20%;
+  left: 20%;
+}
+
+div#upload input[type="submit"] {
+margin-left: 20px;
+}
+
+div#upload label {
+margin-right: 20px;
+}
+
+div#example-data {
+  top: 50%;
+  left: 20%;
+  cursor: pointer;
+}
+
+div#example-data .example-link {
+  font-family: 'TitilliumText14L600wt', 'Myriad Pro', 'Arial';
+  color: white;
+  text-decoration: none;
+}
+
 div#quickstats {
 background-color: #555;
 height: 30px;
