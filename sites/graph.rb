@@ -16,6 +16,10 @@ end
 get '/js/:file' do
   content_type 'text/javascript'
   File.read File.join('graph/js', params[:file])
+end  
+
+get '/fonts/:file' do
+  File.read File.join('graph/fonts', params[:file])
 end
 
 get '/:file' do

@@ -21,26 +21,24 @@
   	<link href="/css/styles.css" rel="stylesheet" type="text/css" />
   	<link href="/css/fonts.css" rel="stylesheet" type="text/css" />
   	
+  	<link href="css/chart1.css" rel="stylesheet" type="text/css" />
     
   </head>
   <body>
+    <h1 class="rotate">Geo Stats</h1>
     <div id="content">
-
-      <div id="title">
-      	<h1>OpenPathsStats</h1>
-      </div>
 
       <div id="slider">
       </div> 
 
       <div id="outer_map_cartodb_container">
         <div id="map_cartodb_container"></div>
+        <span class="cartodb_map_controls">
+          <a href="#zoom_in" class="cartodb_map_embed_zoom_in">+</a>
+          <a href="#zoom_out" class="cartodb_map_embed_zoom_out">-</a>
+        </span>
+        <a href="https://cartodb.com" class="cartodb_logo" target="_blank">CartoDB</a>
       </div>
-      <span class="cartodb_map_controls">
-        <a href="#zoom_in" class="cartodb_map_embed_zoom_in">+</a>
-        <a href="#zoom_out" class="cartodb_map_embed_zoom_out">-</a>
-      </span>
-      <a href="https://cartodb.com" class="cartodb_logo" target="_blank">CartoDB</a>
 
       <div id="quickstats">
         <div class="stat" id="distance"><span class="label">Distance:</span> 12,053 km</div>
@@ -57,4 +55,5 @@
     </div>
     
   </body>
+  <script type="text/javascript" src="js/chart1.js"></script>
 </html>

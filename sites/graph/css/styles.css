@@ -2,6 +2,16 @@ body {
 background-color: black;
 font-family: 'TitilliumText14L600wt', 'Myriad Pro', 'Arial';
 color: white;
+position: relative;
+}
+
+h1 {
+	display: block;
+	font-size: 60px;
+	position: fixed;
+	left: -65px;
+	top: 160px;
+	text-align: right;
 }
 
 div#content {
@@ -16,23 +26,23 @@ text-align: center;
 div#slider {
 background-color: #555;
 height: 40px;
-margin: 5 0px;
+margin: 5px 0px;
 }
 
 div#quickstats {
 background-color: #555;
 height: 30px;
-margin: 5 0px;
+margin: 5px 0px;
 }
 
 div.stat {
 float: left;
 height: 30px;
-margin: 0 10px;
+margin: 5px 10px 0 10px;
 }
 
 div#charts {
-margin: 5 0px;
+margin: 5px 0px;
 }
 
 div.chart {
@@ -62,6 +72,7 @@ background: white;
 border-radius: 3px;
 -moz-border-radius: 3px;
 -webkit-border-radius: 3px;
+margin: 5px 0;
 }
 div#map_cartodb_container {
 position: absolute;
@@ -224,4 +235,23 @@ text-indent: -9999px;
 line-height: 0;
 font-size: 0;
 text-transform: capitalize;
+}
+
+.rotate {
+
+/* Safari */
+-webkit-transform: rotate(-90deg);
+
+/* Firefox */
+-moz-transform: rotate(-90deg);
+
+/* IE */
+-ms-transform: rotate(-90deg);
+
+/* Opera */
+-o-transform: rotate(-90deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
 }
