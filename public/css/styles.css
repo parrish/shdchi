@@ -5,6 +5,14 @@ color: white;
 position: relative;
 }
 
+a:visited {
+  color: white;
+}
+
+a:link {
+  color: white;
+}
+
 h1 {
 	display: block;
 	font-size: 60px;
