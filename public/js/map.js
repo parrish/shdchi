@@ -49,15 +49,19 @@ $(function() {
 			$.getJSON(url, function(data) {
 			    r = data.rows[0];
 					
+					console.log(r);
+					
 					area = { val: r.area*0.000001, wales: r.area/20779000000 };
 					distance = { val: r.distance, canyon: r.distance/433000 };
 					avg_speed = { val: r.avgspeed*2.23693629 };
 					timelost = { val: r.timelost*1000000 };
+					carbon = { val: r.total_carbon };
 					
 					//console.log(data);
 					$("#avg_speed_value").html("<span class='stat-val'>"+avg_speed.val.toFixed(0)+"</span><span class='units'>mph</span>");
 					$("#distance_value").html("<span class='stat-val'>"+distance.canyon.toFixed(0)+"</span><span class='units'>Grand Canyons</span>");
 					$("#area_value").html("<span class='stat-val'>"+area.wales.toFixed(0)+"</span><span class='units'>Wales</span>");
+					$("#carbon_value").html("<span class='stat-val'>"+carbon.val.toFixed(0)+"</span><span class='units'>kg</span>");
 					$("#timelost_value").html("<span class='stat-val'>"+timelost.val.toFixed(2)+"</span><span class='units'>ms</span>");
 			  }); 
 			
@@ -72,7 +76,7 @@ $(function() {
 			  });
 			
 			$("#avg_speed_value").click(function() {
-			  
+			  //$("#avg_speed_value").html("<span class='stat-val'>"+(avg_speed.val).toFixed(0)+"</span><span class='units'>mph</span>"); 
 			});  
 
 });
