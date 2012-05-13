@@ -1,4 +1,4 @@
-var width = 477, height = 240;
+var width = 450, height = 240;
 var data = [4, 8, 15, 16, 23, 42, 65, 23, 78, 55];
 
 var chart = d3.select("#charts").append("svg")
