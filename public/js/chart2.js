@@ -43,3 +43,5 @@ function speedHistogram(data, axis) {
 			     .attr("text-anchor", "end") // text-align: right
 			     .text(String);            
 }
+
+window.speedHistogram = speedHistogram;
